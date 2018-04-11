@@ -1,0 +1,3 @@
+test_testrail_homepage:
+    path:     /
+    defaults: { _controller: TestTestrailBundle:Default:index }
