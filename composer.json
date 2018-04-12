@@ -1,0 +1,34 @@
+{
+  "name": "test/testrailbundle",
+  "description": "Integration testrail bundle",
+  "type": "symfony-bundle",
+  "authors": [
+    {
+      "name": "stanislav",
+      "email": "sverevkin25@gmail.com"
+    }
+  ],
+  "keywords": [
+    "test rail"
+  ],
+  "license": [
+    "MIT"
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-0": {
+      "Test\\TestrailBundle": ""
+    }
+  },
+  "target-dir": "Test/TestrailBundle",
+  "repositories": [
+    {
+    }
+  ],
+  "extra": {
+    "branch-alias": {
+      "dev-master": "some_version-dev"
+    }
+  }
+}
