@@ -9,7 +9,18 @@ use function json_decode;
 
 class TestrailService
 {
-    public function getDataByCurl()
+    private $cacheApp;
+
+    /**
+     * TestrailService constructor.
+     * @param $cacheApp
+     */
+    public function __construct($cacheApp)
+    {
+        $this->cacheApp = $cacheApp;
+    }
+
+    public function getData()
     {
 
         $curl = curl_init();
@@ -32,11 +43,19 @@ class TestrailService
 
     public function getResponseData()
     {
-        $data = json_decode($this->getDataByCurl());
+        $dataId = 'project id 6';
+        $cachedItem= $this->cacheApp->getItem($dataId);
+
+        if (!$cachedItem->isHit()) {
+            $cachedItem->set(json_decode($this->getData()));
+            $this->cacheApp->save($cachedItem);
+        }
+
+        $cachedItem = $cachedItem->get();
 
         $failedRunList = [];
 
-        foreach ($data as $item) {
+        foreach ($cachedItem as $item) {
             $failedCount = $item->failed_count;
 
             if ($failedCount > 0) {

@@ -1,3 +1,4 @@
 services:
     Test\TestrailBundle\Service\TestrailService:
             class: Test\TestrailBundle\Service\TestrailService
+            arguments: ['@cache.app']

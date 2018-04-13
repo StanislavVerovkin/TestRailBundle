@@ -9,7 +9,9 @@ class TestrailController extends Controller
 {
     public function testAction()
     {
-        $testRail = new TestrailService();
+
+        $testRail = $this->get('test\testrailbundle\service\testrailservice');
+
         $data = $testRail->getResponseData();
 
         return $this->render('TestTestrailBundle:Default:index.html.twig',[
