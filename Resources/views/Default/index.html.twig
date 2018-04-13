@@ -1,23 +1,23 @@
-<div class="panel-body">
-    <div class="panel-group" id="accordion">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        Failed tests
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse">
-                {% for item in data %}
+{% for item in data %}
+    <div class="panel-body">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Failed tests
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
                     <div class="panel-body">
                         <a class="btn btn-danger btn-rounded" href="{{ item.url }}" target="_blank">
                             Failed ({{ item.failed_count }})
                         </a>
                         <strong>{{ item.created_on|date("l, F j, Y") }}</strong>
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-</div>
+{% endfor %}

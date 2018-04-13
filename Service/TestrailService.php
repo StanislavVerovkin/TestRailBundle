@@ -41,6 +41,7 @@ class TestrailService
 
             if ($failedCount > 0) {
                 $failedRunList[] = $item;
+                break;
             }
         }
 
