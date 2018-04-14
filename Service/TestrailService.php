@@ -22,7 +22,6 @@ class TestrailService
 
     public function getData()
     {
-
         $curl = curl_init();
         $url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/6';
 
@@ -32,10 +31,11 @@ class TestrailService
         ];
 
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($curl);
+
         curl_close($curl);
 
         return $result;
@@ -44,7 +44,7 @@ class TestrailService
     public function getResponseData()
     {
         $dataId = 'project id 6';
-        $cachedItem= $this->cacheApp->getItem($dataId);
+        $cachedItem = $this->cacheApp->getItem($dataId);
 
         if (!$cachedItem->isHit()) {
             $cachedItem->set(json_decode($this->getData()));
@@ -52,6 +52,8 @@ class TestrailService
         }
 
         $cachedItem = $cachedItem->get();
+
+        $this->cacheApp->deleteItem($dataId);
 
         $failedRunList = [];
 
@@ -66,4 +68,6 @@ class TestrailService
 
         return $failedRunList;
     }
+
+
 }
