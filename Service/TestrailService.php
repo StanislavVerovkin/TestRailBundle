@@ -2,6 +2,7 @@
 
 namespace Test\TestrailBundle\Service;
 
+use function curl_error;
 use function curl_init;
 use function curl_setopt;
 use const CURLOPT_HTTPHEADER;
@@ -35,6 +36,11 @@ class TestrailService
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($curl);
+
+        if($result === false)
+        {
+            echo '<strong>Ошибка curl: </strong>' . curl_error($curl);
+        }
 
         curl_close($curl);
 
