@@ -6,6 +6,7 @@ use function curl_error;
 use function curl_init;
 use function curl_setopt;
 use const CURLOPT_HTTPHEADER;
+use function dump;
 use function json_decode;
 
 class TestrailService
@@ -37,8 +38,7 @@ class TestrailService
 
         $result = curl_exec($curl);
 
-        if($result === false)
-        {
+        if ($result === false) {
             echo '<strong>Ошибка curl: </strong>' . curl_error($curl);
         }
 
@@ -50,6 +50,7 @@ class TestrailService
     public function getResponseData()
     {
         $dataId = 'project id 6';
+
         $cachedItem = $this->cacheApp->getItem($dataId);
 
         if (!$cachedItem->isHit()) {
@@ -58,8 +59,6 @@ class TestrailService
         }
 
         $cachedItem = $cachedItem->get();
-
-        $this->cacheApp->deleteItem($dataId);
 
         $failedRunList = [];
 
@@ -74,6 +73,4 @@ class TestrailService
 
         return $failedRunList;
     }
-
-
 }
