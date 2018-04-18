@@ -50,9 +50,10 @@ class TestrailService
 
     public function getResponseData()
     {
-        $key = 'project_id_6';
 
-        $this->cacheApp = new FilesystemAdapter($key, 3600);
+        $this->cacheApp = new FilesystemAdapter('project', 3600);
+
+        $key = 'project_id_6';
 
         $cachedItem = $this->cacheApp->getItem($key);
 
