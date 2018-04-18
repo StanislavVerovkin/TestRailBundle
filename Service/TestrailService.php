@@ -8,6 +8,7 @@ use function curl_setopt;
 use const CURLOPT_HTTPHEADER;
 use function dump;
 use function json_decode;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class TestrailService
 {
@@ -49,9 +50,11 @@ class TestrailService
 
     public function getResponseData()
     {
-        $dataId = 'project id 6';
+        $key = 'project_id_6';
 
-        $cachedItem = $this->cacheApp->getItem($dataId);
+        $this->cacheApp = new FilesystemAdapter($key, 3600);
+
+        $cachedItem = $this->cacheApp->getItem($key);
 
         if (!$cachedItem->isHit()) {
             $cachedItem->set(json_decode($this->getData()));
@@ -59,6 +62,8 @@ class TestrailService
         }
 
         $cachedItem = $cachedItem->get();
+
+//        $this->cacheApp->deleteItem($key);
 
         $failedRunList = [];
 
