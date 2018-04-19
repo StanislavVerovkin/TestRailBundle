@@ -64,7 +64,7 @@ class TestrailService
 
         $cachedItem = $cachedItem->get();
 
-//        $this->cacheApp->deleteItem($key);
+        $this->cacheApp->deleteItem($key);
 
         $failedRunList = [];
 
