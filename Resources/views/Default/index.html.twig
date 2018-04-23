@@ -12,9 +12,9 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <p><strong>Date of last check: {{ item.created_on|date("l, F j, Y") }}</strong></p>
-                        <p><strong>Login: codecrew_prod@boosta.co</strong></p>
-                        <p><strong>Password: c0deCrew</strong></p>
+                        <p>Date of last check: {{ item.created_on|date("l, F j, Y") }}</p>
+                        <p>Login: <strong>codecrew_prod@boosta.co</strong></p>
+                        <p>Password: <strong>c0deCrew</strong></p>
                         <a class="btn btn-danger btn-rounded" href="{{ item.url }}" target="_blank">
                             Failed ({{ item.failed_count }})
                         </a>
