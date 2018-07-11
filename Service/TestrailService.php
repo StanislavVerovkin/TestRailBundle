@@ -13,8 +13,6 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 class TestrailService
 {
     private $cacheApp;
-    private $positionUrl = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/6';
-    private $dctUrl = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/7';
 
     /**
      * TestrailService constructor.
@@ -29,12 +27,10 @@ class TestrailService
     {
         $curl = curl_init();
 
-        if ($url = $this->positionUrl) {
-            curl_setopt($curl, CURLOPT_URL, $url);
-        }
-
-        if ($url = $this->dctUrl) {
-            curl_setopt($curl, CURLOPT_URL, $url);
+        if ($id = 7) {
+            $url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/' . $id . '';
+        } else {
+            $url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/6';
         }
 
         $headers = [
@@ -42,6 +38,7 @@ class TestrailService
             'Authorization: Basic Y29kZWNyZXdfcHJvZEBib29zdGEuY286YzBkZUNyZXc='
         ];
 
+        curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
