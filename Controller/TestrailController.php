@@ -10,7 +10,7 @@ class TestrailController extends Controller
     public function testAction()
     {
 
-        $testRail = $this->get('test\testrailbundle\service\testrailservice');
+        $testRail = $this->get('test_rail');
 
         $data = $testRail->getResponseData();
 
