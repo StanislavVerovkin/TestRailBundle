@@ -26,14 +26,21 @@ class TestrailService
     public function getData()
     {
         $curl = curl_init();
-        $url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/6';
 
         $headers = [
             'Content-Type:application/json',
             'Authorization: Basic Y29kZWNyZXdfcHJvZEBib29zdGEuY286YzBkZUNyZXc='
         ];
 
-        curl_setopt($curl, CURLOPT_URL, $url);
+        if ($url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/7'){
+            curl_setopt($curl, CURLOPT_URL, $url);
+        }
+
+        if ($url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/6'){
+            curl_setopt($curl, CURLOPT_URL, $url);
+        }
+
+
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
