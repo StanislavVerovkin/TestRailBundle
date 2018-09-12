@@ -27,10 +27,13 @@ class TestrailService
     {
         $curl = curl_init();
 
-        if ($id = 7) {
-            $url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/' . $id . '';
-        } else {
-            $url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/6';
+        $idPositions = 6;
+        $idDct = 7;
+
+        if ($idPositions) {
+            $url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/' . $idPositions . '';
+        } else if ($idDct) {
+            $url = 'https://boosta.testrail.io/index.php?/api/v2/get_runs/' . $idDct . '';
         }
 
         $headers = [
