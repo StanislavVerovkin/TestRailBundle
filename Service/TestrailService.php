@@ -75,8 +75,11 @@ class TestrailService
 
         foreach ($cachedItem as $item) {
             $failedCount = $item->failed_count;
+            $createdDate = $item->created_on;
 
-            if ($failedCount > 0) {
+            $time = date('Ymd', $createdDate) === date('Ymd', time());
+
+            if ($failedCount > 0 && $time) {
                 $failedRunList[] = $item;
                 break;
             }
